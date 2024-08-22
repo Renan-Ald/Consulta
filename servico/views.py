@@ -15,11 +15,11 @@ from django.db import transaction
 from django.utils import timezone
 from decimal import Decimal
 import json
-from .models import CustomUser
+from .models import CustomUser,Parceiro,Representante
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomUserSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomTokenObtainPairSerializer,CustomUserSerializer
+from .serializers import CustomTokenObtainPairSerializer,CustomUserSerializer ,ParceiroSerializer,RepresentanteSerializer
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer,
@@ -96,3 +96,10 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
     permission_classes = [IsAuthenticated]
+
+class ParceiroViewSet(viewsets.ModelViewSet):
+    queryset = Parceiro.objects.all()
+    serializer_class = ParceiroSerializer
+class RepresentanteViewSet(viewsets.ModelViewSet):
+    queryset = Representante.objects.all()
+    serializer_class = RepresentanteSerializer

@@ -34,6 +34,7 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root_password
+      UPLOAD_LIMIT: 100000000
     ports:
       - "8080:80"
     depends_on:

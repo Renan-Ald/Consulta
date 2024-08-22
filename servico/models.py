@@ -57,3 +57,35 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         related_name='customuser_set',  # Nome diferente para evitar conflitos
         blank=True,
     )
+
+class Parceiro(models.Model):
+    id_parceiro = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=255)
+    # imagem = models.ImageField(upload_to='imagens_parceiros/')
+    banco = models.CharField(max_length=255)
+    agencia = models.CharField(max_length=20)
+    conta = models.CharField(max_length=20)
+    telefone = models.CharField(max_length=15)
+    horario_funcionamento = models.CharField(max_length=100)
+    ciclo_pagamento = models.CharField(max_length=100)
+    data_fechamento_ciclo = models.DateField()
+    status = models.BooleanField(default=True)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    data_modificacao = models.DateTimeField(auto_now=True)
+    id_pessoa = models.IntegerField()
+    id_endereco = models.IntegerField()
+    created_by = models.IntegerField()
+
+    def __str__(self):
+        return self.nome
+class Representante(models.Model):
+    id_representante = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=255)
+    cpf = models.CharField(max_length=14)  # Formato: 000.000.000-00
+    telefones = models.CharField(max_length=50)  # Formato: (xx) xxxxx-xxxx
+    banco = models.CharField(max_length=255)
+    agencia = models.CharField(max_length=20)
+    conta = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nome
