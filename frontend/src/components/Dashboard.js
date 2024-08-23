@@ -26,7 +26,7 @@ const Dashboard = () => {
         getUserData(userId, token)
           .then(userData => {
             setUserData(userData);
-            if (userData.nivel_acesso !== 'administrador' && userData.nivel_acesso !== 'funcionario') {
+            if (userData.nivel_acesso !== 'administrador' && userData.nivel_acesso !== 'funcionario' && userData.nivel_acesso !== 'cliente'  ) {
               handleLogout();
             }
           })
@@ -189,14 +189,14 @@ const Dashboard = () => {
     return <div>Loading...</div>;
   }
 
-  if (userData && (userData.nivel_acesso === 'cliente' || userData.nivel_acesso === 'nao_autorizado')) {
-    return (
-      <div>
-        <h1>Acesso Negado</h1>
-        <p>Você não tem permissão para acessar esta página.</p>
-      </div>
-    );
-  }
+  // if (userData && (userData.nivel_acesso === 'cliente' || userData.nivel_acesso === 'nao_autorizado')) {
+  //   return (
+  //     <div>
+  //       <h1>Acesso Negado</h1>
+  //       <p>Você não tem permissão para acessar esta página.</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="dashboard-container">

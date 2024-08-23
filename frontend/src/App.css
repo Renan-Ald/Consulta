@@ -151,6 +151,12 @@
 .sidebar-nav li ul.sub-menu {
   display: block;
   text-align: left;
+
+}
+
+.bnt_ad{
+  list-style-type: none;
+  color: white;
 }
 .sidebar-nav li.no-bullet::before {
   display: none; /* Não exibe o marcador */

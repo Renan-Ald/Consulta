@@ -46,7 +46,7 @@ const Sidebar = () => {
               <i className="fas fa-calendar-alt icone"></i>  Agendamento
             </button>
             {openMenus['agendamento'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -57,7 +57,7 @@ const Sidebar = () => {
               <i className="fas fa-cash-register icone"></i> Caixa
             </button>
             {openMenus['caixa'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Transação</a></li>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
@@ -68,7 +68,7 @@ const Sidebar = () => {
             <button className='bnt_sidebar' onClick={handleClienteClick}>
               <i className="fas fa-users icone"></i>Cliente</button>
             {openMenus['cliente'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -79,7 +79,7 @@ const Sidebar = () => {
               <i className="fas fa-chart-line icone"></i> Financeiro
             </button>
             {openMenus['financeiro'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -90,7 +90,7 @@ const Sidebar = () => {
               <i className="fas fa-user-tie icone"></i>  Funcionário
             </button>
             {openMenus['funcionario'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -101,7 +101,7 @@ const Sidebar = () => {
               <i className="fas fa-handshake icone"></i>Parceiros
             </button>
             {openMenus['parceiros'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -112,7 +112,7 @@ const Sidebar = () => {
               <i className="fas fa-tasks icone"></i>  Procedimentos
             </button>
             {openMenus['procedimentos'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -123,7 +123,7 @@ const Sidebar = () => {
               <i className="fas fa-file-alt icone"></i>   Relatório
             </button>
             {openMenus['relatorio'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -134,7 +134,7 @@ const Sidebar = () => {
               <i className="fas fa-user-tag icone"></i>Representante
             </button>
             {openMenus['representante'] && (
-              <ul>
+              <ul className='bnt_ad'> 
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}
@@ -145,7 +145,7 @@ const Sidebar = () => {
               <i className="fas fa-user icone"></i> Usuário
             </button>
             {openMenus['usuario'] && (
-              <ul>
+              <ul className='bnt_ad'>
                 <li><a href="/register">Adicionar</a></li>
               </ul>
             )}

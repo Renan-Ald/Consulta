@@ -57,7 +57,7 @@ const Register = () => {
       const response = await registerUser(userData, token);
       console.log('Register Response:', response);
       alert(response.message || 'Usuário registrado com sucesso!');
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       console.error('Erro ao registrar usuário:', err);
       setError(err.message || 'Erro ao registrar usuário');
