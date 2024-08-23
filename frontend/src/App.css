@@ -1,0 +1,157 @@
+/* Define o layout básico do wrapper */
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Estilo do sidebar */
+#sidebar-wrapper {
+  width: 0;
+  height: 100%;
+  background: #06b10f;
+  opacity: 0.9;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.5s ease, width 0.5s ease;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* Estilo dos itens de navegação no sidebar */
+.icone{
+  margin-right: 10px;
+}
+.sidebar-nav {
+  padding: 0;
+  list-style: none;
+  text-align: left; /* Garante que todos os itens da barra lateral sejam alinhados à esquerda */
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  width: 100%;
+  padding-left: 20px; /* Adiciona padding consistente para alinhar todos os itens */
+  margin-right: 50px; /* Espaçamento entre o ícone e o texto */
+  font-size: 18px; /* Ajusta o tamanho do ícone, se necessário */
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #ddd;
+  padding: 10px 0; /* Remove padding lateral para evitar desalinhamento */
+  text-align: left;
+  cursor: pointer; /* Adiciona um cursor pointer para itens clicáveis */
+}
+
+
+
+.sidebar-nav li:hover {
+  background: #06b10f;
+}
+
+/* Esconde o sub-menu por padrão */
+.sub-menu {
+  display: none;
+  list-style: none;
+  padding: 0;
+}
+
+.sub-menu li a {
+  padding: 10px 20px; /* Indenta os sub-itens */
+  background: #06b10f; /* Cor de fundo para sub-itens */
+}
+
+/* Estilo do conteúdo da página */
+#page-content-wrapper {
+  margin-left: 0;
+  padding: 20px;
+  width: 100%;
+  transition: margin-left 0.5s ease;
+}
+
+/* Estilo para o botão de menu (toggle) */
+#menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1010;
+  background: #7fd19e;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  transition: left 0.5s ease;
+}
+
+/* Formato de barras para o botão */
+#menu-toggle span::before,
+#menu-toggle span::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: white;
+  margin: 5px 0;
+}
+
+#menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: white;
+  margin: 5px 0;
+}
+
+/* Estilo do botão na barra lateral */
+.bnt_sidebar {
+  background: transparent; /* Torna o fundo do botão transparente */
+  border: none; /* Remove a borda do botão */
+  color: white; /* Define a cor do texto como branco */
+  font-size: 16px; /* Define o tamanho da fonte */
+  cursor: pointer; /* Adiciona o cursor pointer para indicar que é clicável */
+  padding: 10px 0; /* Ajusta o padding para alinhar os botões */
+  text-align: left !important; /* Garante que o texto do botão seja alinhado à esquerda */
+  transition: color 0.3s, background 0.3s; /* Adiciona uma transição suave para cor e fundo */
+  outline: none; /* Remove o contorno padrão ao clicar */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.bnt_sidebar:hover {
+  background: rgba(255, 255, 255, 0.1); /* Leve destaque ao passar o mouse */
+}
+
+/* Estilo adicional para remover a borda de foco */
+.bnt_sidebar:focus {
+  outline: none; /* Remove o contorno de foco ao clicar no botão */
+}
+
+/* Ajusta o layout quando o sidebar está aberto */
+#wrapper.menuDisplayed #sidebar-wrapper {
+  width: 250px;
+  left: 0;
+}
+
+#wrapper.menuDisplayed #page-content-wrapper {
+  margin-left: 250px;
+}
+
+#wrapper.menuDisplayed #menu-toggle {
+  left: 260px;
+}
+
+/* Estilo para exibir sub-menu quando o menu correspondente está aberto */
+.sidebar-nav li ul.sub-menu {
+  display: block;
+  text-align: left;
+}
+.sidebar-nav li.no-bullet::before {
+  display: none; /* Não exibe o marcador */
+}

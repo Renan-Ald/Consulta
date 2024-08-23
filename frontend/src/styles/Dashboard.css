@@ -1,0 +1,30 @@
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chart-container {
+  display: flex; /* Usar flexbox para alinhar os gráficos lado a lado */
+  justify-content: space-between; /* Espaçamento igual entre os gráficos */
+  flex-wrap: wrap; /* Permite que os gráficos se movam para a próxima linha em telas menores */
+}
+
+.chart {
+  flex: 1; /* Cada gráfico ocupará a mesma largura */
+  margin: 10px; /* Margem entre os gráficos */
+  min-width: 300px; /* Largura mínima para cada gráfico */
+  max-width: 500px; /* Largura máxima para cada gráfico */
+}
+
+.line-chart-container {
+  width: 100%; /* O gráfico de linha ocupará toda a largura disponível */
+  margin-top: 20px; /* Espaçamento acima do gráfico de linha */
+}
+
+canvas {
+  width: 100% !important; /* Garante que o canvas ocupe toda a largura do contêiner */
+  height: 300px; /* Altura fixa para os gráficos */
+  border: 1px solid #ccc; /* Bordas para visualização (opcional) */
+  border-radius: 8px; /* Bordas arredondadas (opcional) */
+}

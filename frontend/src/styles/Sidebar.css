@@ -1,0 +1,126 @@
+/* App.css */
+
+/* Define a largura do conteúdo principal quando o sidebar está presente */
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative; /* Adiciona um contexto para o posicionamento absoluto do botão */
+}
+
+/* Estilo do sidebar */
+#sidebar-wrapper {
+  width: 0; /* Largura inicial do sidebar quando fechado */
+  height: 100%;
+  background: #7fd19e;
+  opacity: 0.9;
+  position: fixed;
+  top: 0;
+  left: -40px;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.5s ease;
+  overflow-y: hidden; /* Oculta qualquer conteúdo que ultrapasse a largura do sidebar */
+  z-index: 100;
+}
+
+/* Estilo dos itens de navegação no sidebar */
+.sidebar-nav {
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.bnt_sidebar i {
+  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+}
+.sidebar-nav li {
+  line-height: 40px;
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #ddd;
+  padding: 10px;
+}
+
+.sidebar-nav li:hover {
+  background: #7fd19e;
+}
+
+.icone{
+  margin-right: 10px !important;
+}
+/* Estilo do conteúdo da página */
+#page-content-wrapper {
+  margin-left: 0px; /* Ajusta a margem esquerda quando o sidebar está fechado */
+  padding: 20px;
+  width: 100%;
+  transition: margin-left 0.5s ease;
+}
+
+/* Estilo para o botão de menu (toggle) */
+#menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 30px; /* Ajusta a posição inicial do botão quando o sidebar está fechado */
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1010; /* Garante que o botão esteja acima do sidebar e do conteúdo */
+  background: #7fd19e;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  transition: left 0.5s ease; /* Adiciona transição suave para o movimento do botão */
+}
+
+/* Formato de barras para o botão */
+#menu-toggle span::before,
+#menu-toggle span::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: white;
+  margin: 5px 0;
+}
+
+/* Adiciona o formato de barras de menu com um meio */
+#menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: white;
+  margin: 5px 0;
+}
+.bnt_sidebar {
+  background: transparent; /* Torna o fundo do botão transparente */
+  border: none; /* Remove a borda do botão */
+  color: white; /* Define a cor do texto como branco */
+  font-size: 16px; /* Define o tamanho da fonte */
+  cursor: pointer; /* Adiciona o cursor pointer para indicar que é clicável */
+  padding: 10px 20px; /* Adiciona um pouco de espaço ao redor do texto */
+  text-align: left; /* Alinha o texto ao centro */
+  display: block;
+  transition: color 0.3s, background 0.3s; /* Adiciona uma transição suave para cor e fundo */
+}
+
+.bnt_sidebar:hover {
+  background: rgba(255, 255, 255, 0.1); /* Leve destaque ao passar o mouse */
+}
+/* Ajusta o layout quando o sidebar está aberto */
+#wrapper.menuDisplayed #sidebar-wrapper {
+  width: 250px;
+}
+
+#wrapper.menuDisplayed #page-content-wrapper {
+  margin-left: 250px; /* Ajusta a margem esquerda para o conteúdo */
+}
+
+/* Ajusta a posição do botão quando o sidebar está aberto */
+#wrapper.menuDisplayed #menu-toggle {
+  left: calc(250px + 10px); /* Move o botão para fora do sidebar quando aberto */
+}
