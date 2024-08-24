@@ -49,6 +49,8 @@ export const registerUser = async (userData, token) => {
 export const loginUser = async (email, password) => {
   try {
     const response = await api.post('login/', { email, password });
+    localStorage.setItem('token', response.data.access);
+    console.log('token:',response.data )
     return response.data;
   } catch (error) {
     console.error('Error logging in:', error);
@@ -84,5 +86,156 @@ export const getAllUsers = async (token) => {
     throw error.response ? error.response.data : error;
   }
 };  
+
+//procedimentos////////////////////////////////
+export const getprocedimentos = async (token) => {
+  try {
+    const response = await api.get('procedimentos/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar a lista de procedimentos:', error);
+    throw error.response ? error.response.data : error;
+  }
+};  
+
+export const postProcedimento = async (token, procedimentoData) => {
+  try {
+    const response = await api.post('procedimentos/', procedimentoData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar o procedimento:', error);
+    throw error.response ? error.response.data : error;
+  }
+};
+//fim procedimentos////////////////////////////////
+// tuss/////////////////////////////////////////
+export const gettuss = async (token) => {
+  try {
+    const response = await api.get('tuss/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar a lista de procedimentos:', error);
+    throw error.response ? error.response.data : error;
+  }
+}; 
+
+//fim tuss////////////////////////////////////////
+///especialidade/////////////////////////////////
+export const getespecialidade = async (token) => {
+  try {
+    const response = await api.get('especialidade/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar a lista de procedimentos:', error);
+    throw error.response ? error.response.data : error;
+  }
+}; 
+
+//////Pessoa Fisica////////
+export const postPessoaFisica = async (token, PessoafisicaData) => {
+  try {
+    const response = await api.post('pessoa_fisica/', PessoafisicaData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar o Pessoa fisica:', error);
+    throw error.response ? error.response.data : error;
+  }
+};
+export const getPessoaFisica = async (token) => {
+  try {
+    const response = await api.get('pessoa_fisica/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar Pessoa fisica:', error);
+    throw error.response ? error.response.data : error;
+  }
+}; 
+///// fim/////////////
+//////Endereco////////
+export const postEndereco = async (token, Endereco) => {
+  try {
+    const response = await api.post('endereco/', Endereco, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar o Pessoa fisica:', error);
+    throw error.response ? error.response.data : error;
+  }
+};
+///// fim/////////////
+export const postParceiro = async (token, Parceirodata) => {
+  try {
+    const response = await api.post('parceiros/', Parceirodata, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar o Pessoa fisica:', error);
+    throw error.response ? error.response.data : error;
+  }
+};
+///// fim/////////////
+export const getParceiro = async (token) => {
+  try {
+    const response = await api.get('parceiros/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar a lista de parceiros:', error);
+    throw error.response ? error.response.data : error;
+  }
+}; 
+///// fim/////////////
+export const postAgendamento = async (token, Agendamentodata) => {
+  try {
+    const response = await api.post('parceiros/', Agendamentodata, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar o Agendamento:', error);
+    throw error.response ? error.response.data : error;
+  }
+};
+///// fim/////////////
 
 export default api;

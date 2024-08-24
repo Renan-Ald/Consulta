@@ -15,11 +15,9 @@ from django.db import transaction
 from django.utils import timezone
 from decimal import Decimal
 import json
-from .models import CustomUser,Parceiro,Representante
+from .models import CustomUser,Parceiro,Representante ,Procedimento,Tuss,Especialidade, PessoaFisica,Endereco,Agendamento
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomUserSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomTokenObtainPairSerializer,CustomUserSerializer ,ParceiroSerializer,RepresentanteSerializer
+from .serializers import CustomTokenObtainPairSerializer,CustomUserSerializer ,ParceiroSerializer,RepresentanteSerializer,ProcedimentoSerializer,TussSerializer,EspecialidadeSerializer,PessoaFisicaSerializer,EnderecoSerializer,AgendamentoSerializer
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer,
@@ -103,3 +101,31 @@ class ParceiroViewSet(viewsets.ModelViewSet):
 class RepresentanteViewSet(viewsets.ModelViewSet):
     queryset = Representante.objects.all()
     serializer_class = RepresentanteSerializer
+
+class ProcedimentoViewSet(viewsets.ModelViewSet):
+    queryset = Procedimento.objects.all()
+    serializer_class = ProcedimentoSerializer
+
+class TussViewSet(viewsets.ModelViewSet):
+    queryset = Tuss.objects.all()
+    serializer_class = TussSerializer
+
+class EspecialidadeViewSet(viewsets.ModelViewSet):
+    queryset = Especialidade.objects.all()
+    serializer_class = EspecialidadeSerializer
+
+class ParceiroViewSet(viewsets.ModelViewSet):
+    queryset = Parceiro.objects.all()
+    serializer_class = ParceiroSerializer
+
+class PessoaFisicaViewSet(viewsets.ModelViewSet):
+    queryset = PessoaFisica.objects.all()
+    serializer_class = PessoaFisicaSerializer
+
+class EnderecoViewSet(viewsets.ModelViewSet):
+    queryset = Endereco.objects.all()
+    serializer_class = EnderecoSerializer
+
+class AgendamentoViewSet(viewsets.ModelViewSet):
+    queryset = Agendamento.objects.all() 
+    serializer_class = AgendamentoSerializer

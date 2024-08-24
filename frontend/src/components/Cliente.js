@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllUsers } from '../api'; // Importe a função correta de `api.js`
+import { getPessoaFisica } from '../api'; // Importe a função correta de `api.js`
 import '../styles/Cliente.css';
 
 const Clientes = () => {
@@ -11,8 +11,8 @@ const Clientes = () => {
     const fetchClientes = async () => {
       try {
         const token = localStorage.getItem('token'); // Supondo que o token está armazenado no localStorage
-        const users = await getAllUsers(token);
-        setClientes(users);
+        const pessoas = await getPessoaFisica(token); // Chame a nova função
+        setClientes(pessoas);
       } catch (error) {
         console.error('Erro ao buscar os clientes:', error);
       }
@@ -23,7 +23,7 @@ const Clientes = () => {
 
   // Função para filtrar os clientes com base no termo de busca
   const filteredClientes = clientes.filter(cliente =>
-    cliente.nome_completo.toLowerCase().includes(searchTerm.toLowerCase())
+    cliente.nome.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -40,20 +40,22 @@ const Clientes = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nome Completo</th>
+            <th>Nome</th>
+            <th>Nome Social</th>
+            <th>CPF</th>
             <th>Email</th>
             <th>Telefone</th>
-            <th>Endereço</th>
           </tr>
         </thead>
         <tbody>
           {filteredClientes.map(cliente => (
-            <tr key={cliente.id}>
-              <td>{cliente.id}</td>
-              <td>{cliente.nome_completo}</td>
+            <tr key={cliente.id_pessoa_fisica}>
+              <td>{cliente.id_pessoa_fisica}</td>
+              <td>{cliente.nome}</td>
+              <td>{cliente.nome_social}</td>
+              <td>{cliente.cpf}</td>
               <td>{cliente.email}</td>
               <td>{cliente.telefone}</td>
-              <td>{cliente.endereco}</td>
             </tr>
           ))}
         </tbody>

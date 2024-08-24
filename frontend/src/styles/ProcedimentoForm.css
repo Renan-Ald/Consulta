@@ -1,0 +1,100 @@
+.procedimento-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .form-header {
+    text-align: center;
+  }
+  
+  .form-header h2 {
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .form-header hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin-top: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-row .half-width {
+    width: 48%;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .mensagem {
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+  }
+  .dropdown-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute; /* Para que a lista fique acima dos outros elementos */
+    z-index: 1000; /* Para garantir que a lista fique acima */
+  }
+  
+  .dropdown-list li {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .dropdown-list li:hover {
+    background-color: #f0f0f0;
+  }
+  

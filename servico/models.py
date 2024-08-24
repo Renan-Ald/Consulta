@@ -59,15 +59,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
 class Pessoa(models.Model):
     id_pessoa = models.AutoField(primary_key=True)
-    pessoa_juridica = models.BooleanField()  # Se 'pessoa_juridica' for um booleano, representando pessoa física ou jurídica
+    pessoa_juridica = models.BooleanField()  # True para pessoa jurídica, False para pessoa física
 
     def __str__(self):
         return f"{self.id_pessoa} - {'Jurídica' if self.pessoa_juridica else 'Física'}"
+
 class PessoaFisica(models.Model):
     id_pessoa_fisica = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=255)
     nome_social = models.CharField(max_length=255, blank=True, null=True)
-    sexo = models.CharField(max_length=1)  # Pode ser "M", "F", ou outras representações
+    sexo = models.CharField(max_length=1)  # "M", "F", ou outras representações
     data_nascimento = models.DateField()
     cpf = models.CharField(max_length=14)  # Formato: 000.000.000-00
     rg = models.CharField(max_length=20)
@@ -79,11 +80,16 @@ class PessoaFisica(models.Model):
     responsavel = models.CharField(max_length=255, blank=True, null=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_modificacao = models.DateTimeField(auto_now=True)
-    id_pessoa = models.ForeignKey('Pessoa', on_delete=models.CASCADE)  # Relacionamento com o modelo Pessoa
+    id_pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE, null=True) # Relacionamento com o modelo Pessoa
 
     def __str__(self):
         return self.nome
-from django.db import models
+
+    def save(self, *args, **kwargs):
+        if not self.id_pessoa_id:  # Verifica se não existe id_pessoa associado
+            pessoa = Pessoa.objects.create(pessoa_juridica=False)
+            self.id_pessoa = pessoa
+        super().save(*args, **kwargs)
 
 class PessoaJuridica(models.Model):
     id_pessoa_juridica = models.AutoField(primary_key=True)
@@ -99,11 +105,34 @@ class PessoaJuridica(models.Model):
     email_responsavel = models.EmailField(max_length=255, blank=True, null=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_modificacao = models.DateTimeField(auto_now=True)
-    id_pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)  # Relacionamento com o modelo Pessoa
+    id_pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE, null=True)  # Relacionamento com o modelo Pessoa
 
     def __str__(self):
         return self.razao_social
 
+    def save(self, *args, **kwargs):
+        if not self.id_pessoa_id:  # Verifica se não existe id_pessoa associado
+            pessoa = Pessoa.objects.create(pessoa_juridica=True)
+            self.id_pessoa = pessoa
+        super().save(*args, **kwargs)
+
+class Endereco(models.Model):
+    id_endereco = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=255)
+    logradouro = models.CharField(max_length=255)
+    bairro = models.CharField(max_length=255)
+    numero = models.CharField(max_length=10)  # Você pode ajustar o tamanho conforme necessário
+    complemento = models.CharField(max_length=255, blank=True, null=True)
+    cep = models.CharField(max_length=10)  # Formato: 00000-000
+    localizacao = models.CharField(max_length=255)
+    lat = models.FloatField()  # Latitude
+    lng = models.FloatField()  # Longitude
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    data_modificacao = models.DateTimeField(auto_now=True)
+    #id_cidade = models.ForeignKey('Cidade', on_delete=models.CASCADE)  # Assumindo que você tem um modelo Cidade
+
+    def __str__(self):
+        return f"{self.nome}, {self.logradouro}, {self.bairro}, {self.cep}"
 class Parceiro(models.Model):
     id_parceiro = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=255)
@@ -117,10 +146,9 @@ class Parceiro(models.Model):
     status = models.BooleanField(default=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_modificacao = models.DateTimeField(auto_now=True)
-    # pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)  # Relacionamento com o modelo Pessoa
-    id_endereco = models.IntegerField()
+    id_endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
     created_by = models.IntegerField()
-
+    id_pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     def __str__(self):
         return self.nome
 
@@ -142,12 +170,6 @@ class Tuss(models.Model):
     def __str__(self):
         return f"{self.codigo_tuss} - {self.nome}"
     
-class Tuss(models.Model):
-    codigo_tuss = models.CharField(max_length=10, primary_key=True)  # O campo de código TUSS como chave primária
-    nome = models.CharField(max_length=255)  # Nome associado ao código TUSS
-
-    def __str__(self):
-        return f"{self.codigo_tuss} - {self.nome}"
 class Especialidade(models.Model):
     codigo_especialidade = models.CharField(max_length=10, primary_key=True)  # Código da especialidade como chave primária
     nome = models.CharField(max_length=255)  # Nome da especialidade
@@ -174,3 +196,15 @@ class Agendamento(models.Model):
 
     def __str__(self):
         return f'Agendamento {self.codigo} - {self.status}'
+
+class Procedimento(models.Model):
+    id_procedimento = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=255)
+    descricao = models.TextField()
+    tipo = models.CharField(max_length=100)
+    codigo_tuss = models.CharField(max_length=50)
+    codigo_especialidade = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome
+

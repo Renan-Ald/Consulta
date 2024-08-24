@@ -29,6 +29,18 @@ const Sidebar = () => {
     toggleMenu('cliente'); // Abre ou fecha o submenu
     navigate('/cliente'); // Redireciona para a página de clientes
   };
+  const handleParceirosClick = () => {
+    toggleMenu('parceiros'); // Abre ou fecha o submenu
+    navigate('/parceiro/view'); // Redireciona para a página de clientes
+  };
+  const handleProcedimentosClick = () => {
+    toggleMenu('procedimentos'); // Abre ou fecha o submenu
+    navigate('/procedimento/view'); // Redireciona para a página de clientes
+  };
+  const handleAgendamentoClick = () => {
+    toggleMenu('agendamento'); // Abre ou fecha o submenu
+    navigate('/agendamento/view'); // Redireciona para a página de clientes
+  };
 
   return (
     <>
@@ -42,12 +54,12 @@ const Sidebar = () => {
           <li><a href="/"><i className="fas fa-home icone"></i>Home</a></li>
 
           <li>
-            <button className='bnt_sidebar' onClick={() => toggleMenu('agendamento')}>
+            <button className='bnt_sidebar' onClick={handleAgendamentoClick}>
               <i className="fas fa-calendar-alt icone"></i>  Agendamento
             </button>
             {openMenus['agendamento'] && (
               <ul className='bnt_ad'>
-                <li><a href="/register">Adicionar</a></li>
+                <li><a href="/agendamento">Adicionar</a></li>
               </ul>
             )}
           </li>
@@ -97,23 +109,23 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <button className='bnt_sidebar' onClick={() => toggleMenu('parceiros')}>
+            <button className='bnt_sidebar' onClick={handleParceirosClick}>
               <i className="fas fa-handshake icone"></i>Parceiros
             </button>
             {openMenus['parceiros'] && (
               <ul className='bnt_ad'>
-                <li><a href="/register">Adicionar</a></li>
+                <li><a href="/parceiro">Adicionar</a></li>
               </ul>
             )}
           </li>
 
           <li>
-            <button className='bnt_sidebar' onClick={() => toggleMenu('procedimentos')}>
+            <button className='bnt_sidebar' onClick={handleProcedimentosClick}>
               <i className="fas fa-tasks icone"></i>  Procedimentos
             </button>
             {openMenus['procedimentos'] && (
               <ul className='bnt_ad'>
-                <li><a href="/register">Adicionar</a></li>
+                <li><a href="/procedimento">Adicionar</a></li>
               </ul>
             )}
           </li>
